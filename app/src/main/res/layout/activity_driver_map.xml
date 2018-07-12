@@ -11,6 +11,13 @@ xmlns:tools="http://schemas.android.com/tools"
         android:layout_height="wrap_content"
         android:id="@+id/logout"
         android:text="logout"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/settings"
+        android:text="Setting"
+        android:layout_gravity="end"
+        />
     
     
     <fragment    
@@ -38,6 +45,12 @@ xmlns:tools="http://schemas.android.com/tools"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingLeft="40sp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/customerDesination"
+                android:paddingBottom="10sp"
+                android:text="Destinatio"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

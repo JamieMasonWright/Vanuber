@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "718691600253",
+    "firebase_url": "https://vanuber-411db.firebaseio.com",
+    "project_id": "vanuber-411db",
+    "storage_bucket": "vanuber-411db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718691600253:android:281995d800585948",
+        "android_client_info": {
+          "package_name": "vanuberltd.com.jmwdesigns.vanuber"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "718691600253-u6f247nlf6a49lcblqojk8jat4s4pmcd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "vanuberltd.com.jmwdesigns.vanuber",
+            "certificate_hash": "260f35c5b8afd841c857656c24a63c82ada51f2a"
+          }
+        },
+        {
+          "client_id": "718691600253-q3t11r3f7a1jofuc696basgnk34qabm7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRWg5NhXc2JBireULgPkL42ug2xgDJZJs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "718691600253-q3t11r3f7a1jofuc696basgnk34qabm7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

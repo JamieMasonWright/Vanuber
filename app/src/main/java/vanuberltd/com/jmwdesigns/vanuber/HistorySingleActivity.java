@@ -36,6 +36,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalService;
+import com.paypal.android.sdk.payments.PaymentActivity;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -182,7 +186,7 @@ public class HistorySingleActivity extends AppCompatActivity implements OnMapRea
             .clientId(PayPalConfig.PAYPAL_CLIENT_ID);
 
     private void payPalPayment() {
-        PayPalPayment payment = new PayPalPayment(new BigDecimal(ridePrice), "USD", "Uber Ride",
+        PayPalPayment payment = new PayPalPayment(new BigDecimal(ridePrice), "GBP", "Uber Ride",
                 PayPalPayment.PAYMENT_INTENT_SALE);
 
         Intent intent = new Intent(this, PaymentActivity.class);
@@ -256,7 +260,7 @@ public class HistorySingleActivity extends AppCompatActivity implements OnMapRea
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap=googleMap;
-    }rating
+    }
 
 
     private List<Polyline> polylines;

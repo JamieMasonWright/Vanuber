@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".DriverLoginActivity"
     android:orientation="vertical">
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -25,8 +24,6 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Registration"
+        android:text="registration"
         android:id="@+id/registration"/>
-
-
 </LinearLayout>

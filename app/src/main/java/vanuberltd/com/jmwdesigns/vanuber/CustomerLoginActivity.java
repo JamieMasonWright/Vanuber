@@ -24,7 +24,6 @@ public class CustomerLoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener firebaseAuthListener;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +44,8 @@ public class CustomerLoginActivity extends AppCompatActivity {
             }
         };
 
-
-
         mEmail = (EditText) findViewById(R.id.email);
-        mPassword =  (EditText) findViewById(R.id.password);
+        mPassword = (EditText) findViewById(R.id.password);
 
         mLogin = (Button) findViewById(R.id.login);
         mRegistration = (Button) findViewById(R.id.registration);
@@ -62,14 +59,12 @@ public class CustomerLoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()){
-                            Toast.makeText(CustomerLoginActivity.this, "Sign up error", Toast.LENGTH_LONG).show();
+                            Toast.makeText(CustomerLoginActivity.this, "sign up error", Toast.LENGTH_SHORT).show();
                         }else{
                             String user_id = mAuth.getCurrentUser().getUid();
                             DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("Users").child("Customers").child(user_id);
                             current_user_db.setValue(true);
                         }
-
-
                     }
                 });
             }
@@ -83,20 +78,22 @@ public class CustomerLoginActivity extends AppCompatActivity {
                 mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(CustomerLoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Toast.makeText(CustomerLoginActivity.this, "Sign in error", Toast.LENGTH_LONG).show();
+                        if(!task.isSuccessful()){
+                            Toast.makeText(CustomerLoginActivity.this, "sign in error", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
+
             }
         });
-
     }
+
 
     @Override
     protected void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(firebaseAuthListener);
     }
-
     @Override
     protected void onStop() {
         super.onStop();

@@ -4,7 +4,8 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "vanuberltd.com.jmwdesigns.vanuber"
-        minSdkVersion 15
+        //required minimum for paypal integration to work
+        minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
@@ -38,6 +39,9 @@ dependencies {
     //Google Directions Library (Thanks Guys)
     compile 'com.github.jd-alexander:library:1.1.0'
     compile 'com.android.support:recyclerview-v7:27.1.1'
+
+    //paypal integration
+    compile 'com.paypal.sdk:paypal-android-sdk:2.16.0'
 
 }
 apply plugin: 'com.google.gms.google-services'

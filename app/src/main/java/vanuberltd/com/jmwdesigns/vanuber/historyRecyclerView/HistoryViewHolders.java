@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import vanuberltd.com.jmwdesigns.vanuber.HistorySingleActivity;
 import vanuberltd.com.jmwdesigns.vanuber.R;
 
 public class HistoryViewHolders extends RecyclerView.ViewHolder implements View.OnClickListener {

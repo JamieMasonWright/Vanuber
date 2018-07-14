@@ -15,8 +15,10 @@ import android.view.View;
 import android.widget.Button;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,10 +66,13 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
 
     private Button mLogout, mSettings, mRideStatus;
 
+    private Switch mWorkingSwitch;
+
     private int status = 0;
 
     private String customerId = "", destination;
-    private LatLng destinationLatLng;
+
+    private LatLng destinationLatLng, pickupLatLng;
 
     private boolean isLoggingOut = false;
 
@@ -100,6 +105,17 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         mCustomerPhone =  (TextView) findViewById(R.id.customerPhone);
         mCustomerDestination = (TextView) findViewById(R.id.customerDestination);
 
+        mWorkingSwitch = (Switch) findViewById(R.id.workingSwitch);
+        mWorkingSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    connectDriver();
+                }else{
+                    disconnectDriver();
+                }
+            }
+        });
 
         mSettings = (Button) findViewById(R.id.settings);
         mSettings.setOnClickListener(new View.OnClickListener() {
@@ -429,14 +445,6 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         mLocationRequest.setFastestInterval(1000);
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(DriverMapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
-        }
-
-        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-
-
-
     }
 
     @Override
@@ -447,6 +455,13 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+
+    private void connectDriver(){
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(DriverMapActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_REQUEST_CODE);
+        }
+        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
     }
 
     private void disconnectDriver(){
@@ -472,15 +487,8 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         }
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        if(isLoggingOut){
-            disconnectDriver();
-        }
 
 
-    }
 
     private List<Polyline> polylines;
     private static final int[] COLORS = new int[]{R.color.primary_dark_material_light};

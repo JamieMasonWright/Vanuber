@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -80,7 +81,10 @@ public class CustomerMapActivity extends FragmentActivity implements OnMapReadyC
 
 
     private TextView mDriverName, mDriverPhone, mDriverCar;
+
     private RadioGroup mRadioGroup;
+
+    private RatingBar mRatingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +108,8 @@ public class CustomerMapActivity extends FragmentActivity implements OnMapReadyC
         mDriverName = (TextView) findViewById(R.id.driverName);
         mDriverPhone =  (TextView) findViewById(R.id.driverPhone);
         mDriverCar = (TextView) findViewById(R.id.driverCar);
+
+        mRatingBar = (RatingBar) findViewById(R.id.ratingBar);
 
 
         mRadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
@@ -411,6 +417,17 @@ autocompleteFragment.setOnPlaceSelectedListener(new
                     }
                     if(map.get("profileImageUrl") != null) {
                         Glide.with(getApplication()).load(map.get("profileImageUrl").toString()).into(mDriverProfileImage);
+                    }
+                    int ratingSum = 0;
+                    float ratingTotal = 0;
+                    float ratingAvg = 0;
+                    for(DataSnapshot child : dataSnapshot.child("rating").getChildren()){
+                        ratingSum = ratingSum + Integer.valueOf(child.getValue().toString());
+                        ratingTotal++;
+                    }
+                    if(ratingTotal!= 0){
+                        ratingAvg = ratingSum/ratingTotal;
+                        mRatingBar.setRating(ratingAvg);
                     }
 
                 }
